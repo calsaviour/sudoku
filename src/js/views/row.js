@@ -12,8 +12,7 @@ RowView.initialize({
     },
     render: function () {
         "use strict";
-        this.$el = $().add('<div>');
-        this.$el.html(this.template);
+        this.$el = $().add(this.template());
         this.renderCells();
         $(this.container).append(this.$el);
     },

@@ -7,13 +7,13 @@ module.exports = {
         // TODO: Replace this with a true board generator
         // Currently simply initiates a known-valid board
         this.startingState.rows = [
-            [5, 3,  ,  , 7,  ,  ,  ,  ],
-            [6,  ,  , 1, 9, 5,  ,  ,  ],
-            [ , 9, 8,  ,  ,  ,  , 6,  ],
+            [5, 3,  ,  , 7,  ,  ,  , undefined],
+            [6,  ,  , 1, 9, 5,  ,  , undefined],
+            [ , 9, 8,  ,  ,  ,  , 6, undefined],
             [8,  ,  ,  , 6,  ,  ,  , 3],
             [4,  ,  , 8,  , 3,  ,  , 1],
             [7,  ,  ,  , 2,  ,  ,  , 6],
-            [ , 6,  ,  ,  ,  , 2, 8,  ],
+            [ , 6,  ,  ,  ,  , 2, 8,  undefined],
             [ ,  ,  , 4, 1, 9,  ,  , 5],
             [ ,  ,  ,  , 8,  ,  , 7, 9]
         ];

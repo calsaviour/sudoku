@@ -1,5 +1,5 @@
-<div class="cell">
-    {{#if startingValue}}
-        {{ startingValue }}
-    {{/if}}
-</div
+{{#if startingValue}}
+    <input class="cell" maxlength="1" value="{{ startingValue }}" disabled>
+{{else}}
+    <input class="cell" maxlength="1">
+{{/if}}
