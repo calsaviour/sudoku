@@ -22,7 +22,7 @@ GameView.initialize({
         var i,
             row;
         for (i = 0; i < this.board.startingState.rows.length; i++) {
-            row = Object.create(RowView)
+            row = Object.create(RowView);
             row.initialize({
                 cells: this.board.startingState.rows[i]
             });

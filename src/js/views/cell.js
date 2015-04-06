@@ -4,6 +4,7 @@ var BaseView = require('./base'),
 CellView.initialize({
     template: require('../templates/cell.hbs'),
     initialize: function (options) {
+        "use strict";
         this.container = options.container;
         this.startingValue = options.startingValue;
     },
@@ -11,9 +12,10 @@ CellView.initialize({
         "keyUp": "handleAnswer"
     },
     handleAnswer: function () {
-
+        "use strict";
     },
     render: function () {
+        "use strict";
         this.container.append(this.template({
             startingValue: this.startingValue
         }));

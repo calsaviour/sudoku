@@ -7,15 +7,15 @@ module.exports = {
         // TODO: Replace this with a true board generator
         // Currently simply initiates a known-valid board
         this.startingState.rows = [
-            [5, 3,  ,  , 7,  ,  ,  , undefined],
-            [6,  ,  , 1, 9, 5,  ,  , undefined],
-            [ , 9, 8,  ,  ,  ,  , 6, undefined],
-            [8,  ,  ,  , 6,  ,  ,  , 3],
-            [4,  ,  , 8,  , 3,  ,  , 1],
-            [7,  ,  ,  , 2,  ,  ,  , 6],
-            [ , 6,  ,  ,  ,  , 2, 8,  undefined],
-            [ ,  ,  , 4, 1, 9,  ,  , 5],
-            [ ,  ,  ,  , 8,  ,  , 7, 9]
+            [5, 3, undefined, undefined, 7, undefined, undefined, undefined, undefined],
+            [6, undefined, undefined, 1, 9, 5, undefined, undefined, undefined],
+            [undefined, 9, 8, undefined, undefined, undefined, undefined, 6, undefined],
+            [8, undefined, undefined, undefined, 6, undefined, undefined, undefined, 3],
+            [4, undefined, undefined, 8, undefined, 3, undefined, undefined, 1],
+            [7, undefined, undefined, undefined, 2, undefined, undefined, undefined, 6],
+            [undefined, 6, undefined, undefined, undefined, undefined, 2, 8,  undefined],
+            [undefined, undefined, undefined, 4, 1, 9, undefined, undefined, 5],
+            [undefined, undefined, undefined, undefined, 8, undefined, undefined, 7, 9]
         ];
         this.currentState = this.startingState;
         this.solution.rows = [

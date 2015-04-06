@@ -1,5 +1,5 @@
 var BaseView = require('./base'),
-    $ = require ('jquery'),
+    $ = require('jquery'),
     RowView = Object.create(BaseView),
     CellView = require('./cell');
 
@@ -18,9 +18,10 @@ RowView.initialize({
     },
     renderCells: function () {
         "use strict";
-        var i;
+        var i,
+            cell;
         for (i = 0; i < this.cells.length; i++) {
-            var cell = Object.create(CellView);
+            cell = Object.create(CellView);
             cell.initialize({
                 container: this.$el,
                 startingValue: this.cells[i]

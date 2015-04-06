@@ -9,7 +9,7 @@ module.exports = function (grunt) {
         watch: require('./watch'),
         clean: require('./clean'),
         uglify: require('./uglify'),
-        jslint: require('./jslint'),
+        jshint: require('./jshint'),
         autoprefixer: require('./autoprefixer')
     };
     if (grunt.file.exists('config/aws-credentials.js')) {

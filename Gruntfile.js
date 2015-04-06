@@ -11,10 +11,10 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-less');
     grunt.loadNpmTasks('grunt-contrib-uglify');
-    grunt.loadNpmTasks('grunt-jslint');
+    grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-autoprefixer');
 
-    grunt.registerTask('lint', ['jslint']);
+    grunt.registerTask('lint', ['jshint']);
     grunt.registerTask('compile-test',  ['clean:test', 'copy:test', 'browserify:test', 'less:test']);
     grunt.registerTask('compile-dev',  ['clean:dev', 'copy:dev', 'browserify:dev', 'less:dev', 'autoprefixer:dev']);
     grunt.registerTask('compile-deploy',  ['clean:deploy', 'copy:deploy', 'browserify:deploy', 'autoprefixer:deploy', 'less:deploy', 'uglify']);
