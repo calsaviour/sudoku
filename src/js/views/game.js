@@ -1,12 +1,13 @@
 var BaseView = require('./base'),
     $ = require('jquery'),
     GameView = Object.create(BaseView),
-    RowView = require('./row');
+    RowView = require('./row'),
+    Board = require('../models/board');
 
 GameView.initialize({
     el: "#content",
     template: require('../templates/game.hbs'),
-    board: require('../models/board'),
+    board: Object.create(Board),
     events: {
         "keyUp": "handleKeyNav"
     },
