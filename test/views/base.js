@@ -32,21 +32,24 @@ describe("Base view", function () {
     describe("delegateEvents", function () {
         it("should delegate events specified by the events object", function (done) {
             var view = Object.create(BaseView);
+            $('#content').html('<div id="test-el"></div>');
             view.initialize({
-                el: '#content',
+                el: '#test-el',
                 events: {
                     'testEvent': 'handleEvent'
                 },
                 handleEvent: function () {
+                    $('#content').empty();
                     done();
                 }
             });
-            $('#content').trigger('testEvent');
+            $('#test-el').trigger('testEvent');
         });
         it("should only listen to events triggered from view.el or children", function (done) {
             var view = Object.create(BaseView);
+            $('#content').html('<div id="test-el"></div>');
             view.initialize({
-                el: '#content',
+                el: '#test-el',
                 events: {
                     'testEvent': 'handleEvent'
                 },
@@ -60,7 +63,10 @@ describe("Base view", function () {
             });
             $('#content').after('<div id="outside-scope"></div>');
             $('#outside-scope').trigger('testEvent');
-            setTimeout(done, 100);
+            setTimeout(function () {
+                $('#content').empty();
+                done();
+            }, 100);
         });
     });
 });
