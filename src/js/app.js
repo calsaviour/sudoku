@@ -1,5 +1,5 @@
 var app = {
-    init: function () {
+    initialize: function () {
         "use strict";
         var $ = require('jquery');
         $(document).ready(function () {
@@ -10,4 +10,4 @@ var app = {
 };
 
 module.exports = app;
-app.init();
+app.initialize();
