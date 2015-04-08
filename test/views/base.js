@@ -20,13 +20,59 @@ describe("Base view", function () {
             view.initialize();
             expect(view).to.deep.equal(Object.create(BaseView));
         });
-        it("should call delegateEvents", function (done) {
+        it("should call delegateEvents if this.$el is set", function (done) {
             var view = Object.create(BaseView);
             view.initialize({
+                $el: $('#content'),
                 delegateEvents: function () {
                     done();
                 }
             });
+        });
+        it("should not attempt to delegate events if no view is set", function (done) {
+            var view = Object.create(BaseView);
+            view.initialize({
+                delegateEvents: function () {
+                    should.fail(
+                        'view.initialize called delegateEvents',
+                        'view.initialize does not delegateEvents when view.$el is not set',
+                        'view.initialize called delegateEvents when view.$el was not set'
+                        );
+                }
+            });
+            setTimeout(function () {
+                $('#content').empty();
+                done();
+            }, 100);
+        });
+        it("should call setElement", function (done) {
+            var view = Object.create(BaseView);
+            view.initialize({
+                setElement: function () {
+                    done();
+                }
+            });
+        });
+    });
+    describe("setElement", function () {
+        it("does nothing if this.$el is already set", function () {
+            var view = Object.create(BaseView);
+            view.initialize({
+                $el: $('#content')
+            });
+            expect(view.$el).to.deep.equal($("#content"));
+        });
+        it("sets this.$el if this.el is set", function () {
+            var view = Object.create(BaseView);
+            view.initialize({
+                el: '#content'
+            });
+            expect(view.$el).to.deep.equal($("#content"));
+        });
+        it("does not set this.$el if this.el is not defined", function () {
+            var view = Object.create(BaseView);
+            view.initialize();
+            expect(view.$el).to.deep.be.undefined;
         });
     });
     describe("delegateEvents", function () {

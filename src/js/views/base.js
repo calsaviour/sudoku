@@ -4,8 +4,16 @@ var $ = require('jquery'),
         initialize: function (options) {
             "use strict";
             _.extend(this, options);
-            this.delegateEvents();
+            this.setElement();
+            if (this.$el) {
+                this.delegateEvents();
+            }
             return this;
+        },
+        setElement: function () {
+            if (!this.$el && this.el) {
+                this.$el = $(this.el);
+            }
         },
         delegateEvents: function () {
             "use strict";
@@ -13,7 +21,7 @@ var $ = require('jquery'),
                 events = this.events || {};
             for (event in events) {
                 if (events.hasOwnProperty(event)) {
-                    $(this.el).on(event, this[events[event]]);
+                    this.$el.on(event, this[events[event]]);
                 }
             }
         }
