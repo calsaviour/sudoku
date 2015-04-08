@@ -2,12 +2,12 @@ var BaseView = require('./base'),
     $ = require('jquery'),
     GameView = Object.create(BaseView),
     RowView = require('./row'),
-    Board = require('../models/board');
+    board = require('../models/board');
 
 GameView.initialize({
     el: "#content",
     template: require('../templates/game.hbs'),
-    board: Object.create(Board),
+    board: board,
     events: {
         "keyUp": "handleKeyNav"
     },
@@ -25,6 +25,7 @@ GameView.initialize({
         for (i = 0; i < this.board.startingState.rows.length; i++) {
             row = Object.create(RowView);
             row.initialize({
+                row: i,
                 cells: this.board.startingState.rows[i]
             });
             row.render();

@@ -1,24 +1,30 @@
 var BaseView = require('./base'),
+    $ = require('jquery'),
+    board = require('../models/board'),
     CellView = Object.create(BaseView);
 
 CellView.initialize({
     template: require('../templates/cell.hbs'),
-    initialize: function (options) {
-        "use strict";
-        this.container = options.container;
-        this.startingValue = options.startingValue;
-    },
     events: {
-        "keyUp": "handleAnswer"
+        "keyup": "handleAnswer"
     },
-    handleAnswer: function () {
+    handleAnswer: function (event) {
         "use strict";
+        var cell = $(event.target),
+            value = parseInt(cell.val(), 10);
+        if (!board.isValidValue(value)) {
+            cell.val('');
+            return;
+        }
+        board.update(this.row, this.column, value);
     },
     render: function () {
         "use strict";
-        this.container.append(this.template({
+        this.$el = $().add(this.template({
             startingValue: this.startingValue
         }));
+        this.container.append(this.$el);
+        this.delegateEvents();
     }
 });
 

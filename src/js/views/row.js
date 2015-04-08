@@ -6,10 +6,6 @@ var BaseView = require('./base'),
 RowView.initialize({
     template: require('../templates/row.hbs'),
     container: "#game",
-    initialize: function (options) {
-        "use strict";
-        this.cells = options.cells;
-    },
     render: function () {
         "use strict";
         this.$el = $().add(this.template());
@@ -24,7 +20,9 @@ RowView.initialize({
             cell = Object.create(CellView);
             cell.initialize({
                 container: this.$el,
-                startingValue: this.cells[i]
+                startingValue: this.cells[i],
+                row: this.row,
+                column: i
             });
             cell.render();
         }

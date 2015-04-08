@@ -1,3 +1,5 @@
+var _ = require('underscore');
+
 module.exports = {
     startingState: {},
     currentState: {},
@@ -17,7 +19,7 @@ module.exports = {
             [undefined, undefined, undefined, 4, 1, 9, undefined, undefined, 5],
             [undefined, undefined, undefined, undefined, 8, undefined, undefined, 7, 9]
         ];
-        this.currentState = this.startingState;
+        this.currentState = _.clone(this.startingState);
         this.solution.rows = [
             [5, 3, 4, 6, 7, 8, 9, 1, 2],
             [6, 7, 2, 1, 9, 5, 3, 4, 8],
@@ -29,5 +31,27 @@ module.exports = {
             [2, 8, 7, 4, 1, 9, 6, 3, 5],
             [3, 4, 5, 2, 8, 6, 1, 7, 9]
         ];
+    },
+    update: function (row, column, value) {
+        this.currentState.rows[row][column] = value;
+        this.validate();
+    },
+    validate: function () {
+        // TODO
+    },
+    validateRows: function () {
+        // TODO
+    },
+    validateColumn: function () {
+        // TODO
+    },
+    validateQuadrants: function () {
+        // TODO
+    },
+    isValidValue: function (value) {
+        if (!isNaN(value) && value > 0 && value <= 9) {
+            return true;
+        }
+        return false;
     }
 };
