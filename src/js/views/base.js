@@ -18,10 +18,12 @@ var $ = require('jquery'),
         delegateEvents: function () {
             "use strict";
             var event,
-                events = this.events || {};
+                events = this.events || {},
+                method;
             for (event in events) {
                 if (events.hasOwnProperty(event)) {
-                    this.$el.on(event, this[events[event]]);
+                    method = _.bind(this[events[event]], this);
+                    this.$el.on(event, method);
                 }
             }
         }

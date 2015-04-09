@@ -1,6 +1,5 @@
 var BaseView = require('./base'),
     $ = require('jquery'),
-    board = require('../models/board'),
     CellView = Object.create(BaseView);
 
 CellView.initialize({
@@ -12,11 +11,10 @@ CellView.initialize({
         "use strict";
         var cell = $(event.target),
             value = parseInt(cell.val(), 10);
-        if (!board.isValidValue(value)) {
+        if (!this.board.isValidValue(value)) {
             cell.val('');
-            return;
         }
-        board.update(this.row, this.column, value);
+        this.board.update(this.row, this.column, value);
     },
     render: function () {
         "use strict";

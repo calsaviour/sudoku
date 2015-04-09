@@ -1,4 +1,5 @@
-var _ = require('underscore');
+var _ = require('underscore'),
+    $ = require('jquery');
 
 module.exports = {
     startingState: {},
@@ -34,19 +35,94 @@ module.exports = {
     },
     update: function (row, column, value) {
         this.currentState.rows[row][column] = value;
+        $(this).trigger("updated");
         this.validate();
     },
     validate: function () {
-        // TODO
+        var rowsAreValid = this.validateRows(),
+            columnsAreValid = this.validateColumns(),
+            regionsAreValid = this.validateRegions();
+
+        if (rowsAreValid && columnsAreValid && regionsAreValid && this.isComplete()) {
+            $(this).trigger("wonGame");
+        }
     },
     validateRows: function () {
-        // TODO
+        var i,
+            j,
+            row,
+            isValid = true;
+        for (i = 0; i < this.currentState.rows.length; i++) {
+            row = this.currentState.rows[i];
+            for (j = 0; j < row.length; j++) {
+                if (row[j] !== undefined && _.indexOf(row, row[j], j + 1) > -1) {
+                    $(this).trigger('invalidRow', {row: i});
+                    isValid = false;
+                    break;
+                }
+            }
+        }
+        return isValid;
     },
-    validateColumn: function () {
-        // TODO
+    validateColumns: function () {
+        var i,
+            j,
+            column,
+            value,
+            isValid = true;
+        for (i = 0; i < this.currentState.rows[0].length; i++) {
+            column = [];
+            for (j = 0; j < this.currentState.rows.length; j++) {
+                value = this.currentState.rows[j][i];
+                if (value !== undefined && column.indexOf(value) > -1) {
+                    $(this).trigger('invalidColumn', {column: i});
+                    isValid = false;
+                    break;
+                }
+                column.push(this.currentState.rows[j][i]);
+            }
+        }
+        return isValid;
     },
-    validateQuadrants: function () {
-        // TODO
+    validateRegions: function () {
+        var isValid = true,
+            nRegions = 9,
+            i;
+        for (i = 0; i < nRegions; i++) {
+            if (!this.validateRegion(i)) {
+                isValid = false;
+            }
+        }
+        return isValid;
+    },
+    validateRegion: function (region) {
+        var regionEdgeSize = 3,
+            left = (region % regionEdgeSize) * regionEdgeSize,
+            top = Math.floor(region / regionEdgeSize) * regionEdgeSize,
+            row,
+            column,
+            values = [],
+            value,
+            isValid = true;
+        for (column = left; column < left + regionEdgeSize; column++ ) {
+            for (row = top; row < top + regionEdgeSize; row++) {
+                value = this.currentState.rows[row][column];
+                if (value !== undefined && values.indexOf(value) > -1) {
+                    isValid = false;
+                    $(this).trigger('invalidRegion', {region: region});
+                    break;
+                }
+                values.push(value);
+            }
+        }
+        return isValid;
+    },
+    isComplete: function () {
+        var allCells = _.flatten(this.currentState.rows);
+        if (allCells.indexOf(undefined) === -1) {
+            return true;
+        }
+        return false;
     },
     isValidValue: function (value) {
         if (!isNaN(value) && value > 0 && value <= 9) {

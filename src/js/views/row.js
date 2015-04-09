@@ -19,6 +19,7 @@ RowView.initialize({
         for (i = 0; i < this.cells.length; i++) {
             cell = Object.create(CellView);
             cell.initialize({
+                board: this.board,
                 container: this.$el,
                 startingValue: this.cells[i],
                 row: this.row,
