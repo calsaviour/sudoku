@@ -1,6 +1,7 @@
 var RowView = require('../../src/js/views/row'),
     chai = require('chai'),
     expect = chai.expect,
+    mockBoard = require('../../test-utils/mocks/board'),
     $ = require('jquery');
 
 describe("Row view", function () {
@@ -9,7 +10,8 @@ describe("Row view", function () {
         it("sets the cells property", function () {
             var view = Object.create(RowView);
             view.initialize({
-                cells: ["test"]
+                cells: ["test"],
+                board: mockBoard
             });
             expect(view.cells).to.deep.equal(["test"]);
         });
@@ -30,6 +32,7 @@ describe("Row view", function () {
             $('#content').html('<div id="test-el"></div>');
             view.container = "#test-el";
             view.cells = ["test"];
+            view.board = mockBoard;
             view.render();
             expect(view.$el.hasClass('row')).to.be.true;
             $('#content').empty();
@@ -39,6 +42,7 @@ describe("Row view", function () {
             $('#content').html('<div id="test-el"><div class="sibling"></div></div>');
             view.container = "#test-el";
             view.cells = ["test"];
+            view.board = mockBoard;
             view.render();
             expect($("#test-el .row").length).to.equal(1);
             expect($("#test-el .sibling").length).to.equal(1);
@@ -52,6 +56,7 @@ describe("Row view", function () {
             $('#content').html('<div id="test-el"></div>');
             view.$el = $('#test-el');
             view.cells = [5, 6, undefined, 9, undefined, 3];
+            view.board = mockBoard;
             view.renderCells();
             expect($('#test-el .cell').length).to.equal(6);
             expect($('#test-el .cell').first().val()).to.equal('5');

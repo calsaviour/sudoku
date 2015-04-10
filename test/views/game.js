@@ -1,6 +1,7 @@
 var GameView = require('../../src/js/views/game'),
     chai = require('chai'),
     expect = chai.expect,
+    mockBoard = require('../../test-utils/mocks/board'),
     $ = require('jquery');
 
 describe("Game view", function () {
@@ -35,6 +36,9 @@ describe("Game view", function () {
                         ['test', 'of', 'the'],
                         ['emergency', 'broadcast', 'system']
                     ]
+                },
+                getRegion: function () {
+                    return 0;
                 }
             };
             game.renderRows();

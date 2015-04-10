@@ -1,6 +1,7 @@
 var CellView = require('../../src/js/views/cell'),
     chai = require('chai'),
     expect = chai.expect,
+    mockBoard = require('../../test-utils/mocks/board'),
     $ = require('jquery');
 
 describe("Cell view", function () {
@@ -11,7 +12,8 @@ describe("Cell view", function () {
             $('#content').html('<div id="test-el"></div>');
             view.initialize({
                 container: $('#test-el'),
-                startingValue: 5
+                startingValue: 5,
+                board: mockBoard
             });
             expect(view.startingValue).to.equal(5);
             expect(view.container).to.deep.equal($("#test-el"));
@@ -24,7 +26,8 @@ describe("Cell view", function () {
             $('#content').html('<div id="test-el"></div>');
             view.initialize({
                 container: $('#test-el'),
-                startingValue: 9
+                startingValue: 9,
+                board: mockBoard
             });
             view.render();
             expect($('#test-el .cell').length).to.equal(1);
