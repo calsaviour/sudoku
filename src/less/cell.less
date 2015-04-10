@@ -1,14 +1,27 @@
-#game .cell {
-    display: inline-block;
-    border: @thin-border solid @game-border-color;
-    width: @base-cell-size;
-    height: @base-cell-size;
-    padding: @cell-padding;
-    flex: 1;
-    text-align: center;
-    font-size: @base-font-size;
-}
-
-#game .cell:nth-child(3), #game .cell:nth-child(6) {
-    border-right: @thick-border solid @game-border-color;
+#game {
+    .cell {
+        display: inline-block;
+        border: @thin-border solid @game-border-color;
+        width: @base-cell-size;
+        height: @base-cell-size;
+        padding: @cell-padding;
+        flex: 1;
+        text-align: center;
+        font-size: @base-font-size;
+        transition: 0.5s;
+    }
+    .cell:nth-child(3), .cell:nth-child(6) {
+        border-right: @thick-border solid @game-border-color;
+    }
+    .cell.invalid{
+        background: @invalid-background-color;
+        color: @invalid-foreground-color;
+    }
+    .cell.non-editable, {
+        color: @disabled-foreground;
+    }
+    .cell.non-editable.invalid, {
+        color: @disabled-invalid-foreground;
+        opacity: @disabled-invalid-opacity;
+    }
 }

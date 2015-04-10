@@ -56,7 +56,7 @@ module.exports = {
             row = this.currentState.rows[i];
             for (j = 0; j < row.length; j++) {
                 if (row[j] !== undefined && _.indexOf(row, row[j], j + 1) > -1) {
-                    $(this).trigger('invalidRow', {row: i});
+                    $(this).trigger('invalidRow', i);
                     isValid = false;
                     break;
                 }
@@ -75,7 +75,7 @@ module.exports = {
             for (j = 0; j < this.currentState.rows.length; j++) {
                 value = this.currentState.rows[j][i];
                 if (value !== undefined && column.indexOf(value) > -1) {
-                    $(this).trigger('invalidColumn', {column: i});
+                    $(this).trigger('invalidColumn', i);
                     isValid = false;
                     break;
                 }
@@ -109,13 +109,20 @@ module.exports = {
                 value = this.currentState.rows[row][column];
                 if (value !== undefined && values.indexOf(value) > -1) {
                     isValid = false;
-                    $(this).trigger('invalidRegion', {region: region});
+                    $(this).trigger('invalidRegion', region);
                     break;
                 }
                 values.push(value);
             }
         }
         return isValid;
+    },
+    getRegion: function (row, column) {
+        var regionsPerRow = 3,
+            regionRow = Math.floor(row / 3),
+            regionColumn = Math.floor(column / 3),
+            region = regionColumn + regionRow * regionsPerRow;
+        return region;
     },
     isComplete: function () {
         var allCells = _.flatten(this.currentState.rows);

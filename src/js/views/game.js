@@ -13,11 +13,11 @@ GameView.initialize({
         "keyUp": "handleKeyNav"
     },
     boardEvents: {
-        "invalidRow": "handleInvalidRow",
-        "invalidColumn": "handleInvalidColumn",
-        "invalidRegion": "handleInvalidRegion",
+        "invalidRow": "highlightInvalidRow",
+        "invalidColumn": "highlightInvalidColumn",
+        "invalidRegion": "highlightInvalidRegion",
         "wonGame": "handleWin",
-        "updated": "handleBoardUpdate"
+        "updated": "clearHighlights"
     },
     delegateEvents: function () {
         var event,
@@ -54,20 +54,21 @@ GameView.initialize({
     handleKeyNav: function (event) {
         "use strict";
     },
-    handleInvalidRow: function (event) {
-        console.log(event);
+    highlightInvalidRow: function (event, row) {
+        $('#game .row-' + row).addClass('invalid');
     },
-    handleInvalidColumn: function (event) {
-        console.log(event);
+    highlightInvalidColumn: function (event, column) {
+        $('#game .column-' + column).addClass('invalid');
     },
-    handleInvalidRegion: function (event) {
-        console.log(event);
+    highlightInvalidRegion: function (event, region) {
+
+        $('#game .region-' + region).addClass('invalid');
     },
     handleWin: function (event) {
         console.log(event);
     },
-    handleBoardUpdate: function (event) {
-        console.log(event);
+    clearHighlights: function (event) {
+        $('.cell').removeClass('invalid');
     }
 });
 

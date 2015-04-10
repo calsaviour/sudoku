@@ -7,6 +7,9 @@ CellView.initialize({
     events: {
         "keyup": "handleAnswer"
     },
+    getRegion: function () {
+        return this.board.getRegion(this.row, this.column);
+    },
     handleAnswer: function (event) {
         "use strict";
         var cell = $(event.target),
@@ -19,7 +22,10 @@ CellView.initialize({
     render: function () {
         "use strict";
         this.$el = $().add(this.template({
-            startingValue: this.startingValue
+            startingValue: this.startingValue,
+            row: this.row,
+            column: this.column,
+            region: this.getRegion()
         }));
         this.container.append(this.$el);
         this.delegateEvents();
