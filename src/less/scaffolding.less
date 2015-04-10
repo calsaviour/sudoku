@@ -3,4 +3,25 @@ body {
   font-size: @base-font-size;
   color: @font-color;
   background: @body-bg;
+  transition: 0.5s;
+}
+
+button {
+    border: 1px solid @button-border-color;
+    padding: 5px;
+    border-radius: 5px;
+    background: @button-background-color;
+    color: @button-text-color;
+}
+
+button.large {
+    letter-spacing: 1px;
+    font-weight: 100;
+    font-size: 1.5em;
+    padding: 10px;
+}
+
+button:hover, button:focus {
+    border-color: @button-border-hover-color;
+    background: @button-background-hover-color;
 }

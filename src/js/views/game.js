@@ -3,7 +3,8 @@ var BaseView = require('./base'),
     _ = require('underscore'),
     GameView = Object.create(BaseView),
     RowView = require('./row'),
-    Board = require('../models/board');
+    Board = require('../models/board'),
+    WinnerView = require('./winner');
 
 GameView.initialize({
     el: "#content",
@@ -16,7 +17,7 @@ GameView.initialize({
         "invalidRow": "highlightInvalidRow",
         "invalidColumn": "highlightInvalidColumn",
         "invalidRegion": "highlightInvalidRegion",
-        "wonGame": "handleWin",
+        "wonGame": "showWinnerDialog",
         "updated": "clearHighlights"
     },
     delegateEvents: function () {
@@ -122,11 +123,11 @@ GameView.initialize({
         $('#game .column-' + column).addClass('invalid');
     },
     highlightInvalidRegion: function (event, region) {
-
         $('#game .region-' + region).addClass('invalid');
     },
-    handleWin: function (event) {
-        console.log(event);
+    showWinnerDialog: function (event) {
+        var winner = Object.create(WinnerView);
+        winner.render();
     },
     clearHighlights: function (event) {
         $('.cell').removeClass('invalid');

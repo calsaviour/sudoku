@@ -1,0 +1,24 @@
+#winner-dialog {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: @max-game-width;
+    padding: 50px;
+    text-align: center;
+    background: @game-background-color;
+    border: @thick-border solid @game-border-color;
+    animation-duration: 1s;
+    animation-fill-mode: both;
+    margin: auto;
+    margin-top: 100px;
+}
+
+@keyframes zoomFade {
+  0% {
+    opacity: 0;
+    transform: scale3d(.3, .3, .3);
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
