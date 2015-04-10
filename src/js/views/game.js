@@ -5,18 +5,15 @@ var BaseView = require('./base'),
     RowView = require('./row'),
     Board = require('../models/board'),
     WinnerView = require('./winner'),
-    KeyboardNavigator = require('./keyboard-navigator');
+    KeyboardNavigator = require('./keyboard-navigator'),
+    ValidationHighlighter = require('./validation-highlighter');
 
 GameView.initialize({
     el: "#content",
     template: require('../templates/game.hbs'),
     board: Object.create(Board),
     boardEvents: {
-        "invalidRow": "highlightInvalidRow",
-        "invalidColumn": "highlightInvalidColumn",
-        "invalidRegion": "highlightInvalidRegion",
-        "wonGame": "showWinnerDialog",
-        "updated": "clearHighlights"
+        "wonGame": "showWinnerDialog"
     },
     delegateEvents: function () {
         var event,
@@ -35,11 +32,7 @@ GameView.initialize({
         $(this.el).html(innerHtml);
         this.board.generate();
         this.renderRows();
-        this.keyboardNavigator = Object.create(KeyboardNavigator);
-        this.keyboardNavigator.initialize({
-            el: "#content",
-            board: this.board
-        });
+        this.initializeDelegateViews();
     },
     renderRows: function () {
         "use strict";
@@ -55,22 +48,22 @@ GameView.initialize({
             row.render();
         }
     },
-    highlightInvalidRow: function (event, row) {
-        $('#game .row-' + row).addClass('invalid');
-    },
-    highlightInvalidColumn: function (event, column) {
-        $('#game .column-' + column).addClass('invalid');
-    },
-    highlightInvalidRegion: function (event, region) {
-        $('#game .region-' + region).addClass('invalid');
+    initializeDelegateViews: function () {
+        this.keyboardNavigator = Object.create(KeyboardNavigator);
+        this.keyboardNavigator.initialize({
+            el: "#content",
+            board: this.board
+        });
+        this.validationHighlighter = Object.create(ValidationHighlighter);
+        this.validationHighlighter.initialize({
+            el: "#content",
+            board: this.board
+        });
     },
     showWinnerDialog: function (event) {
         var winner = Object.create(WinnerView);
         winner.render();
     },
-    clearHighlights: function (event) {
-        $('.cell').removeClass('invalid');
-    }
 });
 
 module.exports = GameView;
