@@ -10,6 +10,9 @@
         font-size: @base-font-size;
         transition: 0.5s;
     }
+    ::selection {
+        background: transparent;
+    }
     .cell:nth-child(3), .cell:nth-child(6) {
         border-right: @thick-border solid @game-border-color;
     }
@@ -23,5 +26,10 @@
     .cell.non-editable.invalid, {
         color: @disabled-invalid-foreground;
         opacity: @disabled-invalid-opacity;
+    }
+    .cell:focus {
+        border-color: @focus-cell-border-color;
+        background: @focus-cell-background-color;
+        color: @focus-cell-foreground-color;
     }
 }

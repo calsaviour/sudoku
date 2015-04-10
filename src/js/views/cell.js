@@ -5,7 +5,8 @@ var BaseView = require('./base'),
 CellView.initialize({
     template: require('../templates/cell.hbs'),
     events: {
-        "keyup": "handleAnswer"
+        "keyup": "handleAnswer",
+        "click": "select"
     },
     getRegion: function () {
         return this.board.getRegion(this.row, this.column);
@@ -17,7 +18,11 @@ CellView.initialize({
         if (!this.board.isValidValue(value)) {
             cell.val('');
         }
+        cell.select();
         this.board.update(this.row, this.column, value);
+    },
+    select: function (event) {
+        $(event.target).select();
     },
     render: function () {
         "use strict";
