@@ -1,3 +1,7 @@
+
+// General color
+@primary: #1FBAD6;
+
 // Fonts
 @font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 @base-font-size: 16px;
@@ -7,10 +11,10 @@
 @body-bg: #eee;
 
 // Buttons
-@button-border-color: #0F5094;
-@button-background-color: #1A63B0;
-@button-border-hover-color: #0B3E73;
-@button-background-hover-color: #217DDE;
+@button-border-color: @primary;
+@button-background-color: @primary;
+@button-border-hover-color: #21C5E3;
+@button-background-hover-color: #168396;
 @button-text-color: #fff;
 
 // Game
@@ -21,13 +25,15 @@
 @thick-border: 3px;
 @base-cell-size: 30px;
 @cell-padding: 10px;
-@invalid-background-color: #BD3328;
+@invalid-background-color: #DE2175;
 @invalid-foreground-color: #fff;
 @disabled-foreground: #888;
+@disabled-background: #eee;
+@disabled-invalid-background: #90154C;
 @disabled-invalid-foreground: #fff;
 @disabled-invalid-opacity: 0.8;
-@focus-cell-border-color: #0A3664;
-@focus-cell-background-color: #13477D;
+@focus-cell-border-color: @primary;
+@focus-cell-background-color: @primary;
 @focus-cell-foreground-color: #fff;
 
 // Small screen adjustments

@@ -31,10 +31,11 @@
     }
     .cell.non-editable, {
         color: @disabled-foreground;
+        background-color: @disabled-background;
     }
     .cell.invalid:disabled, {
         color: @disabled-invalid-foreground;
-        opacity: @disabled-invalid-opacity;
+        background: @disabled-invalid-background;
         -webkit-text-fill-color: @disabled-invalid-foreground;
     }
     .cell:focus {
