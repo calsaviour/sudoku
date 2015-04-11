@@ -1,6 +1,8 @@
 var _ = require('underscore'),
     clone = require('clone');
 module.exports = {
+    pFlip: 0.5,
+    pDelete: 0.5,
     solution: [
         [5, 3, 4, 6, 7, 8, 9, 1, 2],
         [6, 7, 2, 1, 9, 5, 3, 4, 8],
@@ -37,10 +39,10 @@ module.exports = {
         }
     },
     shuffle: function () {
-        if (Math.random() > 0.5) {
+        if (Math.random() <= this.pFlip) {
             this.flipX();
         }
-        if (Math.random() > 0.5) {
+        if (Math.random() <= this.pFlip) {
             this.flipY();
         }
         this.shuffleRows();
@@ -51,17 +53,17 @@ module.exports = {
         this.board = clone(this.solution);
         for (row = 0; row < this.board.length; row++) {
             for (column = 0; column < this.board[0].length; column++) {
-                if (this.isReady()) {
+                if (this.isMaxFiltered()) {
                     return this.board;
                 }
-                if (Math.random() > 0.5) {
+                if (Math.random() < this.pDelete) {
                     this.board[row][column] = undefined;
                 }
             }
         }
         return this.board;
     },
-    isReady: function () {
+    isMaxFiltered: function () {
         var definedCells = _.compact(_.flatten(this.board)),
             unique = _.unique(definedCells);
         if (definedCells.length < 18 || unique.length < 9) {

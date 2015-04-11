@@ -1,14 +1,15 @@
 var _ = require('underscore'),
     $ = require('jquery'),
-    boardGenerator = require('./board-generator');
+    BoardGenerator = require('./board-generator');
 
 module.exports = {
     startingState: {},
     currentState: {},
     solution: {},
+    generator: Object.create(BoardGenerator),
     generate: function () {
         "use strict";
-        this.startingState.rows = boardGenerator.generate();
+        this.startingState.rows = this.generator.generate();
         this.currentState = _.clone(this.startingState);
     },
     update: function (row, column, value) {
