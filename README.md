@@ -4,15 +4,15 @@
 [![Dependency Status](https://david-dm.org/shebson/sudoku.svg)](https://david-dm.org/shebson/sudoku)
 [![devDependency Status](https://david-dm.org/shebson/sudoku/dev-status.svg)](https://david-dm.org/shebson/sudoku#info=devDependencies)
 
-This project provides a simple implementation of sudoku in Javascript, HTML and CSS. It does not use any front-end frameworks like Backbone or Bootstrap.
+This project provides a simple implementation of Sudoku in Javascript, HTML and CSS. It does not use any front-end frameworks like Backbone or Bootstrap.
 
-Each game board is pseudo-randomly generated. This game is responsive to different screensizes and additionally includes support for keyboard navigation on desktop. Players recieve instant feedback if their play violates one of the constraints of the game.
+Each game board is pseudo-randomly generated. This game is responsive and additionally includes support for keyboard navigation on desktop. Players receive instant feedback if their play violates one of the constraints of the game.
 
 This project includes a build system that uses Grunt, Browserify and LESS. The application is tested using Mocha and Chai (for more information on tests, see the [testing section](#testing)).
 
 # Hosted version
 
-You can play this sudoku game online at [sudoku.stephenhebson.com](https://sudoku.stephenhebson.com).
+You can play this Sudoku game online at [sudoku.stephenhebson.com](https://sudoku.stephenhebson.com).
 
 # Running locally
 
@@ -59,12 +59,13 @@ Finally, the game is hosted on Amazon S3, and deploys to S3 are fully automated 
 
 ## Next steps
 
-I'm generally happy with how this game turned out. I think the choice of structure made it easy to work quickly, and would make it easy to continue iterating if this were an ongoing project.
+I'm happy with how this game turned out. I think the choice of structure made it easy to work quickly, and would make it easy to continue iterating if this were an ongoing project.
 
 If I had unlimited time, a couple of things I'd like to improve are:
 
 - If this were a real product, game difficulty should be selectable.
-- The board generator takes advantage of the fact that you can shuffle a known sudoku solution board following [certain constraints](http://dryicons.com/blog/2009/08/14/a-simple-algorithm-for-generating-sudoku-puzzles/) and arrive at a new board. It then removes values until the game is appropriately difficult. It would be interesting to try generating the board from scratch using a backtracking algorithm (though that may be less performant than the pseudo-random solution I implemented).
+- The board generator takes advantage of the fact that you can shuffle a known sudoku board following [certain constraints](http://dryicons.com/blog/2009/08/14/a-simple-algorithm-for-generating-sudoku-puzzles/) and arrive at a new board. It then removes values until the game is appropriately difficult. The result is great for game play, but it would be fun to try generating the board from scratch using a backtracking algorithm (though that may be less performant than the pseudo-random solution I implemented).
+- The validation algorithms are largely non-optimized. I decided that for a board where n=9^2, the difference between O(n^2) and O(nlog(n)) didn't matter much and I used naive implementations for most of the validation.
 
 # License
 
