@@ -14,6 +14,7 @@
   "private": true,
   "dependencies": {
     "chai": "~1.9.2",
+    "clone": "^1.0.2",
     "grunt": "~0.4.5",
     "grunt-autoprefixer": "^2.2.0",
     "grunt-aws-s3": "~0.9.4",
