@@ -1,0 +1,20 @@
+#logo {
+    width: @logo-width;
+    max-width: @logo-max-width;
+    display: block;
+    margin: @logo-margin;
+}
+
+
+@media (max-height: @vertical-break) {
+    #logo {
+        width: @compact-logo-width;
+        margin: @compact-logo-margin;
+    }
+}
+@media (max-width: @horizontal-break) {
+    #logo {
+        width: @compact-logo-width;
+        margin: @compact-logo-margin;
+    }
+}
