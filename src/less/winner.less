@@ -1,7 +1,7 @@
 #winner-dialog {
     box-sizing: border-box;
     width: 100%;
-    max-width: @max-game-width;
+    max-width: @max-winner-width;
     padding: 50px;
     text-align: center;
     background: @game-background-color;
@@ -12,7 +12,11 @@
     margin: auto;
     margin-top: @game-margin-top;
 }
-
+@media (max-height: @vertical-break) {
+    #winner-dialog  {
+        margin-top: @compact-game-margin-top;
+    }
+}
 @keyframes zoomFade {
   0% {
     opacity: 0;

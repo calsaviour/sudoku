@@ -1,5 +1,5 @@
 {{#if startingValue}}
-    <input class="non-editable cell column-{{column}} row-{{row}} region-{{region}}" maxlength="1" value="{{ startingValue }}"  data-column="{{column}}" data-row="{{row}}" disabled>
+    <input type="number" class="non-editable cell column-{{column}} row-{{row}} region-{{region}}" maxlength="1" value="{{ startingValue }}"  data-column="{{column}}" data-row="{{row}}" disabled>
 {{else}}
-    <input class="editable cell column-{{column}} row-{{row}} region-{{region}}" maxlength="1" data-column="{{column}}" data-row="{{row}}">
+    <input type="number" min="1" max="9" class="editable cell column-{{column}} row-{{row}} region-{{region}}" maxlength="1" data-column="{{column}}" data-row="{{row}}">
 {{/if}}

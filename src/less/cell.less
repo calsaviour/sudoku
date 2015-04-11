@@ -1,14 +1,23 @@
 #game {
     .cell {
+        -moz-appearance:textfield;
         display: inline-block;
         border: @thin-border solid @game-border-color;
         width: @base-cell-size;
         height: @base-cell-size;
         padding: @cell-padding;
-        flex: 1;
         text-align: center;
         font-size: @base-font-size;
         transition: 0.5s;
+        border-radius: 0px;
+    }
+    .cell::-webkit-outer-spin-button, .cell::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+    .cell:disabled {
+        -webkit-text-fill-color: @disabled-foreground;
+        opacity: 1;
     }
     ::selection {
         background: transparent;
@@ -23,9 +32,10 @@
     .cell.non-editable, {
         color: @disabled-foreground;
     }
-    .cell.non-editable.invalid, {
+    .cell.invalid:disabled, {
         color: @disabled-invalid-foreground;
         opacity: @disabled-invalid-opacity;
+        -webkit-text-fill-color: @disabled-invalid-foreground;
     }
     .cell:focus {
         border-color: @focus-cell-border-color;
@@ -33,3 +43,16 @@
         color: @focus-cell-foreground-color;
     }
 }
+@media (max-height: @vertical-break) {
+    #game .cell {
+        padding: @compact-cell-padding;
+    }
+}
+@media (max-width: @horizontal-break) {
+    #game .cell {
+        padding: @compact-cell-padding;
+        font-size: @compact-font-size;
+    }
+}
+
+

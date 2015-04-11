@@ -1,9 +1,12 @@
 #game {
     background-color: @game-background-color;
     border: @thick-border solid @game-border-color;
-    width: 100%;
-    max-width: @max-game-width;
-    margin: auto;
     box-sizing: border-box;
+    display: inline-block;
     margin-top: @game-margin-top;
+}
+@media (max-height: @vertical-break) {
+    #game  {
+        margin-top: @compact-game-margin-top;
+    }
 }

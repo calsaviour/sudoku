@@ -17,12 +17,14 @@ KeyboardNavigator.initialize({
                 this.focusLeft(row, column);
                 break;
             case 38: // Up
+                event.preventDefault(); // Prevent number input cycling
                 this.focusUp(row, column);
                 break;
             case 39: // Right
                 this.focusRight(row, column);
                 break;
             case 40: // Down
+                event.preventDefault(); // Prevent number input cycling
                 this.focusDown(row, column);
                 break;
         }
