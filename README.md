@@ -1,5 +1,9 @@
 # sudoku
 
+[![Build Status](https://travis-ci.org/shebson/sudoku.svg)](https://travis-ci.org/shebson/sudoku)
+[![Dependency Status](https://david-dm.org/shebson/sudoku.svg)](https://david-dm.org/shebson/sudoku)
+[![devDependency Status](https://david-dm.org/shebson/sudoku/dev-status.svg)](https://david-dm.org/shebson/sudoku#info=devDependencies)
+
 This project provides a simple implementation of sudoku in Javascript, HTML and CSS. It does not use any front-end frameworks like Backbone or Bootstrap.
 
 Each game board is pseudo-randomly generated. This game is responsive to different screensizes and additionally includes support for keyboard navigation on desktop. Players recieve instant feedback if their play violates one of the constraints of the game.
