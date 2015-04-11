@@ -1,6 +1,6 @@
-# sodoku
+# sudoku
 
-This project provides a simple implementation of Sodoku in Javascript, HTML and CSS. It does not use any front-end frameworks like Backbone or Bootstrap.
+This project provides a simple implementation of sudoku in Javascript, HTML and CSS. It does not use any front-end frameworks like Backbone or Bootstrap.
 
 Each game board is pseudo-randomly generated. This game is responsive to different screensizes and additionally includes support for keyboard navigation on desktop. Players recieve instant feedback if their play violates one of the constraints of the game.
 
@@ -8,14 +8,14 @@ This project includes a build system that uses Grunt, Browserify and LESS. The a
 
 # Hosted version
 
-You can play this Sodoku game online at [sodoku.stephenhebson.com](https://sodoku.stephenhebson.com).
+You can play this sudoku game online at [sudoku.stephenhebson.com](https://sudoku.stephenhebson.com).
 
 # Running locally
 
 ## Installation
 
-    $ git clone https://github.com/shebson/sodoku.git
-    $ cd sodoku
+    $ git clone https://github.com/shebson/sudoku.git
+    $ cd sudoku
     $ npm install
 
 ## Building and running
@@ -24,7 +24,7 @@ Build the project and run a development server by running:
 
     $ grunt server
 
-The sodoku game will now be available at `http://localhost:8080`.
+The sudoku game will now be available at `http://localhost:8080`.
 
     $ open http://localhost:8080
 
@@ -60,7 +60,7 @@ I'm generally happy with how this game turned out. I think the choice of structu
 If I had unlimited time, a couple of things I'd like to improve are:
 
 - If this were a real product, game difficulty should be selectable.
-- The board generator takes advantage of the fact that you can shuffle a known Sodoku solution board following [certain constraints](http://dryicons.com/blog/2009/08/14/a-simple-algorithm-for-generating-sudoku-puzzles/) and arrive at a new board. It then removes values until the game is appropriately difficult. It would be interesting to try generating the board from scratch using a backtracking algorithm (though that may be less performant than the pseudo-random solution I implemented).
+- The board generator takes advantage of the fact that you can shuffle a known sudoku solution board following [certain constraints](http://dryicons.com/blog/2009/08/14/a-simple-algorithm-for-generating-sudoku-puzzles/) and arrive at a new board. It then removes values until the game is appropriately difficult. It would be interesting to try generating the board from scratch using a backtracking algorithm (though that may be less performant than the pseudo-random solution I implemented).
 
 # License
 

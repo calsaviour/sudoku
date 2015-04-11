@@ -1,7 +1,7 @@
 {
-  "name": "sodoku",
+  "name": "sudoku",
   "version": "0.0.1",
-  "description": "An HTML5 Sodoku game",
+  "description": "An HTML5 Sudoku game",
   "repository": {
     "type": "git",
     "url": "git://github.com/shebson/soduku.git"
