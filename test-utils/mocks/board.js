@@ -1,4 +1,4 @@
-modules.exports = {
+module.exports = {
     getRegion: function () {
         return 0;
     }

@@ -15,7 +15,6 @@ describe("Game view", function () {
         it("generates a board", function () {
             var game = Object.create(GameView);
             game.render();
-            expect(game.board.solution.rows).to.be.instanceof(Array);
             expect(game.board.currentState.rows).to.be.instanceof(Array);
             expect(game.board.startingState.rows).to.be.instanceof(Array);
         });
@@ -44,8 +43,6 @@ describe("Game view", function () {
             game.renderRows();
             expect($('#game .row').length).to.equal(3);
             expect($('#game .row .cell').length).to.equal(9);
-            expect($('#game .row .cell').first().val()).to.equal('this');
-            expect($('#game .row .cell').last().val()).to.equal('system');
         });
     });
 });
