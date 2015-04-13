@@ -28,15 +28,9 @@ module.exports = {
                 this.solution.slice(3,6),
                 this.solution.slice(6,9)
             ],
-            i,
             section;
-        for (i = 0; i < sections.length; i++) {
-            _.shuffle(sections[i]);
-        }
-        for (i = 0; i < this.solution.length; i++) {
-            section = sections[Math.floor(i / 3)];
-            this.solution[i] = section[i % 3];
-        }
+        sections = _.shuffle(sections);
+        this.solution = sections[0].concat(sections[1], sections[2]);
     },
     shuffle: function () {
         if (Math.random() <= this.pFlip) {

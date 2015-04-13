@@ -1,4 +1,7 @@
 var BoardGenerator = require('../../src/js/models/board-generator'),
+    Board = require('../../src/js/models/board'),
+    _ = require('underscore'),
+    clone = require('clone'),
     chai = require('chai'),
     should = require('should'),
     expect = chai.expect;
@@ -19,6 +22,15 @@ describe("Board generator", function () {
             generator.solution = [[1,2],[3,4]];
             generator.flipY();
             expect(generator.solution).to.deep.equal([[3,4],[1,2]]);
+        });
+    });
+    describe("shuffleRows", function () {
+        it ("changes order of rows", function () {
+            var generator = Object.create(BoardGenerator),
+                original = clone(generator.solution);
+            generator.shuffleRows();
+            expect(JSON.stringify(generator.solution)).not.to.equal(JSON.stringify(original));
+            expect(generator.solution.sort()).to.deep.equal(original.sort());
         });
     });
     describe("shuffle", function () {
@@ -66,6 +78,15 @@ describe("Board generator", function () {
             setTimeout(function () {
                 done();
             }, 100);
+        });
+        it ("generates a solution that passes board validation and completeness checks", function () {
+            var generator = Object.create(BoardGenerator),
+                board = Object.create(Board);
+            generator.shuffle();
+            board.currentState = {
+                rows: generator.solution
+            };
+            expect(board.validate()).to.be.true;
         });
     });
     describe("filterSolution", function () {

@@ -21,10 +21,11 @@ module.exports = {
         var rowsAreValid = this.validateRows(),
             columnsAreValid = this.validateColumns(),
             regionsAreValid = this.validateRegions();
-
         if (rowsAreValid && columnsAreValid && regionsAreValid && this.isComplete()) {
             $(this).trigger("wonGame");
+            return true;
         }
+        return false;
     },
     validateRows: function () {
         var i,
