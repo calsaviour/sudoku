@@ -51,12 +51,12 @@ GameView.initialize({
     initializeDelegateViews: function () {
         this.keyboardNavigator = Object.create(KeyboardNavigator);
         this.keyboardNavigator.initialize({
-            el: "#content",
+            el: this.el,
             board: this.board
         });
         this.validationHighlighter = Object.create(ValidationHighlighter);
         this.validationHighlighter.initialize({
-            el: "#content",
+            el: this.el,
             board: this.board
         });
     },

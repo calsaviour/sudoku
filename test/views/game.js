@@ -45,4 +45,12 @@ describe("Game view", function () {
             expect($('#game .row .cell').length).to.equal(9);
         });
     });
+    describe("showWinnerDialog", function () {
+        it ("Renders the winner dialog view", function () {
+            var game = Object.create(GameView);
+            $('#content').html('<div id="game"></div>');
+            game.showWinnerDialog();
+            expect($('#winner-dialog').length).to.equal(1);
+        });
+    });
 });
