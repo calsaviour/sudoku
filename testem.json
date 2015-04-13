@@ -9,7 +9,6 @@
     },
     "launch_in_dev": [
         "JSHint",
-        "Chrome",
         "PhantomJS"
     ],
     "launch_in_ci": [
