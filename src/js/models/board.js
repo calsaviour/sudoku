@@ -34,7 +34,7 @@ module.exports = {
         for (i = 0; i < this.currentState.rows.length; i++) {
             row = this.currentState.rows[i];
             for (j = 0; j < row.length; j++) {
-                if (row[j] !== undefined && _.indexOf(row, row[j], j + 1) > -1) {
+                if (!isNaN(row[j]) && _.indexOf(row, row[j], j + 1) > -1) {
                     $(this).trigger('invalidRow', i);
                     isValid = false;
                     break;
@@ -53,7 +53,7 @@ module.exports = {
             column = [];
             for (j = 0; j < this.currentState.rows.length; j++) {
                 value = this.currentState.rows[j][i];
-                if (value !== undefined && column.indexOf(value) > -1) {
+                if (!isNaN(value) && column.indexOf(value) > -1) {
                     $(this).trigger('invalidColumn', i);
                     isValid = false;
                     break;
@@ -86,7 +86,7 @@ module.exports = {
         for (column = left; column < left + regionEdgeSize; column++ ) {
             for (row = top; row < top + regionEdgeSize; row++) {
                 value = this.currentState.rows[row][column];
-                if (value !== undefined && values.indexOf(value) > -1) {
+                if (!isNaN(value) && values.indexOf(value) > -1) {
                     isValid = false;
                     $(this).trigger('invalidRegion', region);
                     break;
