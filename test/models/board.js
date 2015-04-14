@@ -283,6 +283,16 @@ describe("Board model", function () {
             board.currentState.rows = [[1, 2], [undefined, 4]];
             expect(board.isComplete()).to.be.false;
         });
+        it("returns false if there are any NaN cells in currentState", function () {
+            var board = Object.create(Board);
+            board.currentState.rows = [[1, 2], [NaN, 4]];
+            expect(board.isComplete()).to.be.false;
+        });
+        it("returns false if there are any null cells in currentState", function () {
+            var board = Object.create(Board);
+            board.currentState.rows = [[1, 2], [3, null], [null, 4]];
+            expect(board.isComplete()).to.be.false;
+        });
         it("returns true if there are no undefined cells in currentState", function () {
             var board = Object.create(Board);
             board.currentState.rows = [[1, 2], [3, 4]];

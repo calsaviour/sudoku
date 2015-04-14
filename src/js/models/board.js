@@ -113,11 +113,14 @@ module.exports = {
     },
     isComplete: function () {
         "use strict";
-        var allCells = _.flatten(this.currentState.rows);
-        if (allCells.indexOf(undefined) === -1 && allCells.indexOf(null) === -1 && allCells.indexOf(NaN) === -1) {
-            return true;
+        var allCells = _.flatten(this.currentState.rows),
+            i;
+        for (i = 0; i < allCells.length; i++) {
+            if (!allCells[i]) {
+                return false;
+            }
         }
-        return false;
+        return true;
     },
     isValidValue: function (value) {
         "use strict";
