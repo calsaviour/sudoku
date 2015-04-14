@@ -24,7 +24,6 @@ GameView.initialize({
                 $(this.board).on(event, method);
             }
         }
-        Object.getPrototypeOf(this).delegateEvents.call(this);
     },
     render: function () {
         "use strict";

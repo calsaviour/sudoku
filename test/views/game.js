@@ -6,6 +6,20 @@ var GameView = require('../../src/js/views/game'),
 
 describe("Game view", function () {
     "use strict";
+    describe("delegateEvents", function () {
+        it("listens for events specified in boardEvents object", function (done) {
+            var game = Object.create(GameView);
+            game.sucess = function () {
+                done();
+            };
+            game.boardEvents = {
+                'testEvent': 'sucess'
+            };
+            game.board = {};
+            game.delegateEvents();
+            $(game.board).trigger('testEvent');
+        });
+    });
     describe("render", function () {
         it("creates a game div inside #content", function () {
             var game = Object.create(GameView);

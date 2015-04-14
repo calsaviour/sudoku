@@ -27,8 +27,15 @@ describe("Board generator", function () {
     describe("shuffleRows", function () {
         it ("changes order of rows", function () {
             var generator = Object.create(BoardGenerator),
-                original = clone(generator.solution);
-            generator.shuffleRows();
+                original = clone(generator.solution),
+                i,
+                maxAttempts = 10;
+            for (i = 0; i < maxAttempts; i++) {
+                generator.shuffleRows();
+                if (JSON.stringify(generator.solution) !== JSON.stringify(original)) {
+                    break;
+                }
+            }
             expect(JSON.stringify(generator.solution)).not.to.equal(JSON.stringify(original));
             expect(generator.solution.sort()).to.deep.equal(original.sort());
         });

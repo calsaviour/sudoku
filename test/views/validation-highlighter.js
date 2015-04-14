@@ -5,6 +5,20 @@ var ValidationHighligher = require('../../src/js/views/validation-highlighter'),
 
 describe("Validation highlighter", function () {
     "use strict";
+    describe("delegateEvents", function () {
+        it("listens for events specified in boardEvents object", function (done) {
+            var highlighter = Object.create(ValidationHighligher);
+            highlighter.sucess = function () {
+                done();
+            };
+            highlighter.boardEvents = {
+                'testEvent': 'sucess'
+            };
+            highlighter.board = {};
+            highlighter.delegateEvents();
+            $(highlighter.board).trigger('testEvent');
+        });
+    });
     describe("highlightInvalidRow", function () {
         it("adds class '.invalid' to cells in specified row", function () {
             var template = require("../../test-utils/templates/rendered-board.hbs"),
