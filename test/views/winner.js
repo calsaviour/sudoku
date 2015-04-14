@@ -1,3 +1,5 @@
+/*global describe: false, it: false */
+
 var WinnerView = require('../../src/js/views/winner'),
     chai = require('chai'),
     expect = chai.expect,

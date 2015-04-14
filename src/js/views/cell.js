@@ -9,6 +9,7 @@ CellView.initialize({
         "click": "select"
     },
     getRegion: function () {
+        "use strict";
         return this.board.getRegion(this.row, this.column);
     },
     handleAnswer: function (event) {
@@ -22,6 +23,7 @@ CellView.initialize({
         this.board.update(this.row, this.column, value);
     },
     select: function (event) {
+        "use strict";
         $(event.target).select();
     },
     render: function () {

@@ -1,3 +1,5 @@
+/*global describe: false, it: false */
+
 var app = require('../src/js/app'),
     chai = require('chai'),
     should = require('should'),

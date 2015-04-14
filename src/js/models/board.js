@@ -13,11 +13,13 @@ module.exports = {
         this.currentState = _.clone(this.startingState);
     },
     update: function (row, column, value) {
+        "use strict";
         this.currentState.rows[row][column] = value;
         $(this).trigger("updated");
         this.validate();
     },
     validate: function () {
+        "use strict";
         var rowsAreValid = this.validateRows(),
             columnsAreValid = this.validateColumns(),
             regionsAreValid = this.validateRegions();
@@ -28,6 +30,7 @@ module.exports = {
         return false;
     },
     validateRows: function () {
+        "use strict";
         var i,
             j,
             row,
@@ -45,6 +48,7 @@ module.exports = {
         return isValid;
     },
     validateColumns: function () {
+        "use strict";
         var i,
             j,
             column,
@@ -65,6 +69,7 @@ module.exports = {
         return isValid;
     },
     validateRegions: function () {
+        "use strict";
         var isValid = true,
             nRegions = 9,
             i;
@@ -76,6 +81,7 @@ module.exports = {
         return isValid;
     },
     validateRegion: function (region) {
+        "use strict";
         var regionEdgeSize = 3,
             left = (region % regionEdgeSize) * regionEdgeSize,
             top = Math.floor(region / regionEdgeSize) * regionEdgeSize,
@@ -84,7 +90,7 @@ module.exports = {
             values = [],
             value,
             isValid = true;
-        for (column = left; column < left + regionEdgeSize; column++ ) {
+        for (column = left; column < left + regionEdgeSize; column++) {
             for (row = top; row < top + regionEdgeSize; row++) {
                 value = this.currentState.rows[row][column];
                 if (!isNaN(value) && values.indexOf(value) > -1) {
@@ -98,6 +104,7 @@ module.exports = {
         return isValid;
     },
     getRegion: function (row, column) {
+        "use strict";
         var regionsPerRow = 3,
             regionRow = Math.floor(row / 3),
             regionColumn = Math.floor(column / 3),
@@ -105,6 +112,7 @@ module.exports = {
         return region;
     },
     isComplete: function () {
+        "use strict";
         var allCells = _.flatten(this.currentState.rows);
         if (allCells.indexOf(undefined) === -1) {
             return true;
@@ -112,6 +120,7 @@ module.exports = {
         return false;
     },
     isValidValue: function (value) {
+        "use strict";
         if (!isNaN(value) && value > 0 && value <= 9) {
             return true;
         }

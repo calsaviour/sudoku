@@ -15,24 +15,28 @@ module.exports = {
         [3, 4, 5, 2, 8, 6, 1, 7, 9]
     ],
     flipX: function () {
+        "use strict";
+        var i;
         for (i = 0; i < this.solution.length; i++) {
             this.solution[i].reverse();
         }
     },
     flipY: function () {
+        "use strict";
         this.solution.reverse();
     },
     shuffleRows: function () {
+        "use strict";
         var sections = [
-                this.solution.slice(0,3),
-                this.solution.slice(3,6),
-                this.solution.slice(6,9)
-            ],
-            section;
+                this.solution.slice(0, 3),
+                this.solution.slice(3, 6),
+                this.solution.slice(6, 9)
+            ];
         sections = _.shuffle(sections);
         this.solution = sections[0].concat(sections[1], sections[2]);
     },
     shuffle: function () {
+        "use strict";
         if (Math.random() <= this.pFlip) {
             this.flipX();
         }
@@ -42,6 +46,7 @@ module.exports = {
         this.shuffleRows();
     },
     filterSolution: function () {
+        "use strict";
         var row,
             column;
         this.board = clone(this.solution);
@@ -58,6 +63,7 @@ module.exports = {
         return this.board;
     },
     isMaxFiltered: function () {
+        "use strict";
         var definedCells = _.compact(_.flatten(this.board)),
             unique = _.unique(definedCells);
         if (definedCells.length < 18 || unique.length < 9) {
@@ -66,6 +72,7 @@ module.exports = {
         return false;
     },
     generate: function () {
+        "use strict";
         this.shuffle();
         return this.filterSolution();
     }

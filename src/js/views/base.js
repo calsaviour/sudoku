@@ -11,6 +11,7 @@ var $ = require('jquery'),
             return this;
         },
         setElement: function () {
+            "use strict";
             if (!this.$el && this.el) {
                 this.$el = $(this.el);
             }

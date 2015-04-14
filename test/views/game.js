@@ -1,3 +1,5 @@
+/*global describe: false, it: false */
+
 var GameView = require('../../src/js/views/game'),
     chai = require('chai'),
     expect = chai.expect,
@@ -39,7 +41,7 @@ describe("Game view", function () {
         });
     });
     describe("renderRows", function () {
-        it ("renders the game board's starting state", function () {
+        it("renders the game board's starting state", function () {
             var game = Object.create(GameView);
             $('#content').html('<div id="game"></div>');
             game.board = {
@@ -60,7 +62,7 @@ describe("Game view", function () {
         });
     });
     describe("showWinnerDialog", function () {
-        it ("Renders the winner dialog view", function () {
+        it("Renders the winner dialog view", function () {
             var game = Object.create(GameView);
             $('#content').html('<div id="game"></div>');
             game.showWinnerDialog();

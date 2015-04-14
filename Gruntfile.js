@@ -13,8 +13,9 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-autoprefixer');
+    grunt.loadNpmTasks('grunt-jslint');
 
-    grunt.registerTask('lint', ['jshint']);
+    grunt.registerTask('lint', ['jslint:application', 'jshint']);
     grunt.registerTask('compile-test',  ['clean:test', 'copy:test', 'browserify:test', 'less:test']);
     grunt.registerTask('compile-dev',  ['clean:dev', 'copy:dev', 'browserify:dev', 'less:dev', 'autoprefixer:dev']);
     grunt.registerTask('compile-deploy',  ['clean:deploy', 'copy:deploy', 'browserify:deploy', 'less:deploy', 'autoprefixer:deploy', 'uglify']);

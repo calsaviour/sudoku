@@ -1,3 +1,5 @@
+/*global describe: false, it: false */
+
 var CellView = require('../../src/js/views/cell'),
     chai = require('chai'),
     expect = chai.expect,

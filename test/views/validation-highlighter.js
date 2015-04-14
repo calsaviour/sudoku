@@ -1,3 +1,5 @@
+/*global describe: false, it: false */
+
 var ValidationHighligher = require('../../src/js/views/validation-highlighter'),
     chai = require('chai'),
     expect = chai.expect,

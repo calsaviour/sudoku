@@ -1,3 +1,5 @@
+/*global describe: false, it: false */
+
 var KeyboardNavigator = require('../../src/js/views/keyboard-navigator'),
     chai = require('chai'),
     expect = chai.expect,
@@ -7,7 +9,7 @@ describe("Keyboard navigator", function () {
     "use strict";
     describe("handleKeyNav", function () {
         it("calls this.focusLeft when key code is 37", function (done) {
-            nav = Object.create(KeyboardNavigator);
+            var nav = Object.create(KeyboardNavigator);
             nav.focusLeft = function () {
                 done();
             };
@@ -17,7 +19,7 @@ describe("Keyboard navigator", function () {
             });
         });
         it("calls this.focusUp when key code is 38", function (done) {
-            nav = Object.create(KeyboardNavigator);
+            var nav = Object.create(KeyboardNavigator);
             nav.focusUp = function () {
                 done();
             };
@@ -27,7 +29,7 @@ describe("Keyboard navigator", function () {
             });
         });
         it("calls this.focusRight when key code is 39", function (done) {
-            nav = Object.create(KeyboardNavigator);
+            var nav = Object.create(KeyboardNavigator);
             nav.focusRight = function () {
                 done();
             };
@@ -37,7 +39,7 @@ describe("Keyboard navigator", function () {
             });
         });
         it("calls this.focusDown when key code is 40", function (done) {
-            nav = Object.create(KeyboardNavigator);
+            var nav = Object.create(KeyboardNavigator);
             nav.focusDown = function () {
                 done();
             };
@@ -47,7 +49,7 @@ describe("Keyboard navigator", function () {
             });
         });
         it("calls event.preventDefault when key code is 38", function (done) {
-            nav = Object.create(KeyboardNavigator);
+            var nav = Object.create(KeyboardNavigator);
             nav.focusUp = function () {};
             nav.handleKeyNav({
                 keyCode: 38,
@@ -57,7 +59,7 @@ describe("Keyboard navigator", function () {
             });
         });
         it("calls event.preventDefault when key code is 40", function (done) {
-            nav = Object.create(KeyboardNavigator);
+            var nav = Object.create(KeyboardNavigator);
             nav.focusDown = function () {};
             nav.handleKeyNav({
                 keyCode: 40,
@@ -72,19 +74,19 @@ describe("Keyboard navigator", function () {
             var template = require("../../test-utils/templates/rendered-board.hbs"),
                 nav = Object.create(KeyboardNavigator);
             $("#content").html(template());
-            expect(nav.focusIfEditableCell(0,2)).to.be.true;
+            expect(nav.focusIfEditableCell(0, 2)).to.be.true;
         });
         it("returns false if cell is not editable", function () {
             var template = require("../../test-utils/templates/rendered-board.hbs"),
                 nav = Object.create(KeyboardNavigator);
             $("#content").html(template());
-            expect(nav.focusIfEditableCell(0,0)).to.be.false;
+            expect(nav.focusIfEditableCell(0, 0)).to.be.false;
         });
         it("returns false if cell does not exist", function () {
             var template = require("../../test-utils/templates/rendered-board.hbs"),
                 nav = Object.create(KeyboardNavigator);
             $("#content").html(template());
-            expect(nav.focusIfEditableCell(0,9)).to.be.false;
+            expect(nav.focusIfEditableCell(0, 9)).to.be.false;
         });
     });
     describe("focusDown", function () {
@@ -96,7 +98,7 @@ describe("Keyboard navigator", function () {
                 done();
                 return true;
             };
-            nav.focusDown(2,4);
+            nav.focusDown(2, 4);
         });
     });
     describe("focusUp", function () {
@@ -108,7 +110,7 @@ describe("Keyboard navigator", function () {
                 done();
                 return true;
             };
-            nav.focusUp(2,4);
+            nav.focusUp(2, 4);
         });
     });
     describe("focusLeft", function () {
@@ -120,7 +122,7 @@ describe("Keyboard navigator", function () {
                 done();
                 return true;
             };
-            nav.focusLeft(2,4);
+            nav.focusLeft(2, 4);
         });
     });
     describe("focusRight", function () {
@@ -132,7 +134,7 @@ describe("Keyboard navigator", function () {
                 done();
                 return true;
             };
-            nav.focusRight(2,4);
+            nav.focusRight(2, 4);
         });
     });
 });

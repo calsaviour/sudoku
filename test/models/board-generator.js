@@ -5,27 +5,28 @@ var BoardGenerator = require('../../src/js/models/board-generator'),
     chai = require('chai'),
     should = require('should'),
     expect = chai.expect;
+/*global describe: false, it: false */
 
 describe("Board generator", function () {
     "use strict";
     describe("flipX", function () {
-        it ("reverses each row of the solution array", function () {
+        it("reverses each row of the solution array", function () {
             var generator = Object.create(BoardGenerator);
-            generator.solution = [[1,2],[3,4]];
+            generator.solution = [[1, 2], [3, 4]];
             generator.flipX();
-            expect(generator.solution).to.deep.equal([[2,1],[4,3]]);
+            expect(generator.solution).to.deep.equal([[2, 1], [4, 3]]);
         });
     });
     describe("flipY", function () {
-        it ("reverses the solution array", function () {
+        it("reverses the solution array", function () {
             var generator = Object.create(BoardGenerator);
-            generator.solution = [[1,2],[3,4]];
+            generator.solution = [[1, 2], [3, 4]];
             generator.flipY();
-            expect(generator.solution).to.deep.equal([[3,4],[1,2]]);
+            expect(generator.solution).to.deep.equal([[3, 4], [1, 2]]);
         });
     });
     describe("shuffleRows", function () {
-        it ("changes order of rows", function () {
+        it("changes order of rows", function () {
             var generator = Object.create(BoardGenerator),
                 original = clone(generator.solution),
                 i,
@@ -41,14 +42,14 @@ describe("Board generator", function () {
         });
     });
     describe("shuffle", function () {
-        it ("calls this.shuffleRows", function (done) {
+        it("calls this.shuffleRows", function (done) {
             var generator = Object.create(BoardGenerator);
             generator.shuffleRows = function () {
                 done();
             };
             generator.shuffle();
         });
-        it ("flips along the X axis if selected randomly", function (done) {
+        it("flips along the X axis if selected randomly", function (done) {
             var generator = Object.create(BoardGenerator);
             generator.flipY = function () {
                 done();
@@ -56,7 +57,7 @@ describe("Board generator", function () {
             generator.pFlip = 1;
             generator.shuffle();
         });
-        it ("flips along the Y axis if selected randomly", function (done) {
+        it("flips along the Y axis if selected randomly", function (done) {
             var generator = Object.create(BoardGenerator);
             generator.flipY = function () {
                 done();
@@ -64,21 +65,21 @@ describe("Board generator", function () {
             generator.pFlip = 1;
             generator.shuffle();
         });
-        it ("does not flip unless selected by random roll", function (done) {
+        it("does not flip unless selected by random roll", function (done) {
             var generator = Object.create(BoardGenerator);
             generator.flipY = function () {
                 should.fail(
                     'generator flipped on Y axis',
                     'generator does not flip on Y axis',
                     'generator flipped on Y axis when not selected to'
-                    );
+                );
             };
             generator.flipX = function () {
                 should.fail(
                     'generator flipped on X axis',
                     'generator does not flip on X axis',
                     'generator flipped on X axis when not selected to'
-                    );
+                );
             };
             generator.pFlip = 0;
             generator.shuffle();
@@ -86,7 +87,7 @@ describe("Board generator", function () {
                 done();
             }, 100);
         });
-        it ("generates a solution that passes board validation and completeness checks", function () {
+        it("generates a solution that passes board validation and completeness checks", function () {
             var generator = Object.create(BoardGenerator),
                 board = Object.create(Board);
             generator.shuffle();
@@ -97,65 +98,65 @@ describe("Board generator", function () {
         });
     });
     describe("filterSolution", function () {
-       it ("deletes cells randomly according to pDelete", function () {
+        it("deletes cells randomly according to pDelete", function () {
             var generator = Object.create(BoardGenerator);
-            generator.solution = [[1,2],[3,4]];
+            generator.solution = [[1, 2], [3, 4]];
             generator.pDelete = 1;
-            generator.isMaxFiltered = function() {
+            generator.isMaxFiltered = function () {
                 return false;
             };
             generator.filterSolution();
-            expect(generator.board).to.deep.equal([[undefined, undefined],[undefined, undefined]]);
+            expect(generator.board).to.deep.equal([[undefined, undefined], [undefined, undefined]]);
             generator = Object.create(BoardGenerator);
-            generator.solution = [[1,2,3],[4,5,6]];
-            generator.isMaxFiltered = function() {
+            generator.solution = [[1, 2, 3], [4, 5, 6]];
+            generator.isMaxFiltered = function () {
                 return false;
             };
             generator.pDelete = 0;
             generator.filterSolution();
-            expect(generator.board).to.deep.equal([[1,2,3],[4,5,6]]);
+            expect(generator.board).to.deep.equal([[1, 2, 3], [4, 5, 6]]);
         });
-        it ("returns if board is past max filter threshold", function () {
+        it("returns if board is past max filter threshold", function () {
             var generator = Object.create(BoardGenerator);
-            generator.solution = [[1,2],[3,4]];
+            generator.solution = [[1, 2], [3, 4]];
             generator.pDelete = 1;
             generator.filterSolution();
-            expect(generator.board).to.deep.equal([[1,2],[3,4]]);
+            expect(generator.board).to.deep.equal([[1, 2], [3, 4]]);
         });
-        it ("returns this.board", function () {
+        it("returns this.board", function () {
             var generator = Object.create(BoardGenerator),
                 returned;
-            generator.board = [[1,2,3],[4,5,6]];
+            generator.board = [[1, 2, 3], [4, 5, 6]];
             returned = generator.filterSolution();
             expect(returned).to.deep.equal(generator.board);
         });
     });
     describe("isMaxFiltered", function () {
-        it ("returns false if there are 18 or more defined cells and 9 or more unique values", function () {
+        it("returns false if there are 18 or more defined cells and 9 or more unique values", function () {
             var generator = Object.create(BoardGenerator);
-            generator.board = [1,2,3,4,5,6,7,8,9,1,2,3,4,5,6,7,8,9];
+            generator.board = [1, 2, 3, 4, 5, 6, 7, 8, 9, 1, 2, 3, 4, 5, 6, 7, 8, 9];
             expect(generator.isMaxFiltered()).to.be.false;
         });
-        it ("returns true if there are fewer than 18 defined cells", function () {
+        it("returns true if there are fewer than 18 defined cells", function () {
             var generator = Object.create(BoardGenerator);
-            generator.board = [1,2,3,4,5,6,7,8,9,1,2,3,4,5,6,7,8];
+            generator.board = [1, 2, 3, 4, 5, 6, 7, 8, 9, 1, 2, 3, 4, 5, 6, 7, 8];
             expect(generator.isMaxFiltered()).to.be.true;
         });
-        it ("returns true if there are fewer than 9 unique values", function () {
+        it("returns true if there are fewer than 9 unique values", function () {
             var generator = Object.create(BoardGenerator);
-            generator.board = [1,2,3,4,5,6,7,8,1,2,3,4,5,6,7,8,1,2,3,4,5,6,7,8];
+            generator.board = [1, 2, 3, 4, 5, 6, 7, 8, 1, 2, 3, 4, 5, 6, 7, 8, 1, 2, 3, 4, 5, 6, 7, 8];
             expect(generator.isMaxFiltered()).to.be.true;
         });
     });
     describe("generate", function () {
-        it ("calls this.shuffle", function (done) {
+        it("calls this.shuffle", function (done) {
             var generator = Object.create(BoardGenerator);
             generator.shuffle = function () {
                 done();
             };
             generator.generate();
         });
-        it ("returns the result of this.filterSolution", function () {
+        it("returns the result of this.filterSolution", function () {
             var generator = Object.create(BoardGenerator);
             generator.filterSolution = function () {
                 return "filtered";

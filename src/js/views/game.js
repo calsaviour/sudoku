@@ -16,6 +16,7 @@ GameView.initialize({
         "wonGame": "showWinnerDialog"
     },
     delegateEvents: function () {
+        "use strict";
         var event,
             method;
         for (event in this.boardEvents) {
@@ -48,6 +49,7 @@ GameView.initialize({
         }
     },
     initializeDelegateViews: function () {
+        "use strict";
         this.keyboardNavigator = Object.create(KeyboardNavigator);
         this.keyboardNavigator.initialize({
             el: this.el,
@@ -59,10 +61,11 @@ GameView.initialize({
             board: this.board
         });
     },
-    showWinnerDialog: function (event) {
+    showWinnerDialog: function () {
+        "use strict";
         var winner = Object.create(WinnerView);
         winner.render();
-    },
+    }
 });
 
 module.exports = GameView;

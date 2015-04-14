@@ -1,3 +1,5 @@
+/*global describe: false, it: false */
+
 var BaseView = require('../../src/js/views/base'),
     chai = require('chai'),
     should = require('should'),
@@ -37,7 +39,7 @@ describe("Base view", function () {
                         'view.initialize called delegateEvents',
                         'view.initialize does not delegateEvents when view.$el is not set',
                         'view.initialize called delegateEvents when view.$el was not set'
-                        );
+                    );
                 }
             });
             setTimeout(function () {
@@ -104,7 +106,7 @@ describe("Base view", function () {
                         'Event handler was hit',
                         'Event handler not hot',
                         'Event handler was hit when it should not have been'
-                        );
+                    );
                 }
             });
             $('#content').after('<div id="outside-scope"></div>');

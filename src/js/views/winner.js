@@ -14,6 +14,7 @@ WinnerView.initialize({
         $('#play-again').on('click', this.restartGame);
     },
     restartGame: function (event) {
+        "use strict";
         event.preventDefault();
         require('../app').initialize();
     }

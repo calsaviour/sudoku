@@ -13,23 +13,24 @@ KeyboardNavigator.initialize({
             row = cell.data('row'),
             column = cell.data('column');
         switch (event.keyCode) {
-            case 37: // Left
-                this.focusLeft(row, column);
-                break;
-            case 38: // Up
-                event.preventDefault(); // Prevent number input cycling
-                this.focusUp(row, column);
-                break;
-            case 39: // Right
-                this.focusRight(row, column);
-                break;
-            case 40: // Down
-                event.preventDefault(); // Prevent number input cycling
-                this.focusDown(row, column);
-                break;
+        case 37: // Left
+            this.focusLeft(row, column);
+            break;
+        case 38: // Up
+            event.preventDefault(); // Prevent number input cycling
+            this.focusUp(row, column);
+            break;
+        case 39: // Right
+            this.focusRight(row, column);
+            break;
+        case 40: // Down
+            event.preventDefault(); // Prevent number input cycling
+            this.focusDown(row, column);
+            break;
         }
     },
     focusIfEditableCell: function (row, column) {
+        "use strict";
         var el = $('#game .cell.editable.row-' + row + '.column-' + column);
         if (el.length > 0) {
             el.focus().select();
@@ -38,6 +39,7 @@ KeyboardNavigator.initialize({
         return false;
     },
     focusLeft: function (row, column) {
+        "use strict";
         column = column - 1;
         if (this.focusIfEditableCell(row, column)) {
             return;
@@ -47,6 +49,7 @@ KeyboardNavigator.initialize({
         }
     },
     focusRight: function (row, column) {
+        "use strict";
         column = column + 1;
         if (this.focusIfEditableCell(row, column)) {
             return;
@@ -56,6 +59,7 @@ KeyboardNavigator.initialize({
         }
     },
     focusUp: function (row, column) {
+        "use strict";
         row = row - 1;
         if (this.focusIfEditableCell(row, column)) {
             return;
@@ -65,6 +69,7 @@ KeyboardNavigator.initialize({
         }
     },
     focusDown: function (row, column) {
+        "use strict";
         row = row + 1;
         if (this.focusIfEditableCell(row, column)) {
             return;

@@ -1,3 +1,5 @@
+/*global describe: false, it: false */
+
 var RowView = require('../../src/js/views/row'),
     chai = require('chai'),
     expect = chai.expect,
