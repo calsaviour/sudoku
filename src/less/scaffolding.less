@@ -10,22 +10,23 @@ body {
   text-align: center;
 }
 
-button {
+button, a.button {
     border: 1px solid @button-border-color;
     padding: 5px;
     border-radius: 5px;
     background: @button-background-color;
     color: @button-text-color;
+    text-decoration: none
 }
 
-button.large {
+button.large, a.button.large {
     letter-spacing: 1px;
     font-weight: 100;
     font-size: 1.5em;
     padding: 10px;
 }
 
-button:hover, button:focus {
+button:hover, button:focus, a.button:hover, a.button:focus {
     border-color: @button-border-hover-color;
     background: @button-background-hover-color;
 }
