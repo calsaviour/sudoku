@@ -42,7 +42,7 @@ The sudoku game will now be available at `http://localhost:8080`.
 The application is tested using Mocha. To run the test suite, do `npm test`.
 Tests are located in the `test` directory.
 
-This project also uses Travis for Continuous Integration. Travis runs the test
+This project uses Travis for continuous integration. Travis runs the test
 suite whenever a commit is pushed to master.
 
 ## Style
