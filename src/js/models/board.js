@@ -114,7 +114,7 @@ module.exports = {
     isComplete: function () {
         "use strict";
         var allCells = _.flatten(this.currentState.rows);
-        if (allCells.indexOf(undefined) === -1) {
+        if (allCells.indexOf(undefined) === -1 && allCells.indexOf(null) === -1 && allCells.indexOf(NaN) === -1) {
             return true;
         }
         return false;
