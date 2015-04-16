@@ -25,6 +25,14 @@ describe("Board generator", function () {
             expect(generator.solution).to.deep.equal([[3, 4], [1, 2]]);
         });
     });
+    describe("transpose", function () {
+        it ("does an transposes the solution array", function () {
+            var generator = Object.create(BoardGenerator);
+            generator.solution = [[1, 2], [3, 4]];
+            generator.transpose();
+            expect(generator.solution).to.deep.equal([[1, 3], [2, 4]]);
+        });
+    });
     describe("shuffleRows", function () {
         it("changes order of rows", function () {
             var generator = Object.create(BoardGenerator),
@@ -44,6 +52,7 @@ describe("Board generator", function () {
     describe("shuffle", function () {
         it("calls this.shuffleRows", function (done) {
             var generator = Object.create(BoardGenerator);
+                generator.shuffleReps = 1;
             generator.shuffleRows = function () {
                 done();
             };
@@ -51,6 +60,7 @@ describe("Board generator", function () {
         });
         it("flips along the X axis if selected randomly", function (done) {
             var generator = Object.create(BoardGenerator);
+                generator.shuffleReps = 1;
             generator.flipY = function () {
                 done();
             };
@@ -59,6 +69,7 @@ describe("Board generator", function () {
         });
         it("flips along the Y axis if selected randomly", function (done) {
             var generator = Object.create(BoardGenerator);
+                generator.shuffleReps = 1;
             generator.flipY = function () {
                 done();
             };
@@ -67,6 +78,7 @@ describe("Board generator", function () {
         });
         it("does not flip unless selected by random roll", function (done) {
             var generator = Object.create(BoardGenerator);
+                generator.shuffleReps = 1;
             generator.flipY = function () {
                 should.fail(
                     'generator flipped on Y axis',

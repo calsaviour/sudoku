@@ -3,6 +3,7 @@ var _ = require('underscore'),
 module.exports = {
     pFlip: 0.5,
     pDelete: 0.5,
+    shuffleReps: 16,
     solution: [
         [5, 3, 4, 6, 7, 8, 9, 1, 2],
         [6, 7, 2, 1, 9, 5, 3, 4, 8],
@@ -14,6 +15,11 @@ module.exports = {
         [2, 8, 7, 4, 1, 9, 6, 3, 5],
         [3, 4, 5, 2, 8, 6, 1, 7, 9]
     ],
+    transpose: function () {
+        "use strict";
+        var transposed = _.zip.apply(null, this.solution);
+        this.solution = transposed;
+    },
     flipX: function () {
         "use strict";
         var i;
@@ -37,13 +43,19 @@ module.exports = {
     },
     shuffle: function () {
         "use strict";
-        if (Math.random() <= this.pFlip) {
-            this.flipX();
+        var i;
+        for (i = 0; i < this.shuffleReps; i++) {
+            if (Math.random() <= this.pFlip) {
+                this.flipX();
+            }
+            if (Math.random() <= this.pFlip) {
+                this.flipY();
+            }
+            if (Math.random() <= this.pFlip) {
+                this.transpose();
+            }
+            this.shuffleRows();
         }
-        if (Math.random() <= this.pFlip) {
-            this.flipY();
-        }
-        this.shuffleRows();
     },
     filterSolution: function () {
         "use strict";
